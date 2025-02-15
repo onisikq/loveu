@@ -1,0 +1,63 @@
+/* Общие стили для страницы */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Устанавливаем высоту на весь экран */
+    font-family: 'Helvetica Neue', sans-serif;
+    color: white;
+    position: relative;
+}
+
+/* Видеофон */
+#background-video {
+    position: fixed; /* Фиксируем видео на экране */
+    top: 0;
+    left: 0;
+    width: 100%; /* Видео будет растягиваться на всю ширину */
+    height: 100%; /* Видео будет растягиваться на всю высоту */
+    object-fit: cover; /* Видео будет растягиваться с сохранением пропорций */
+    z-index: -1; /* Видео будет позади контента */
+}
+
+/* Контейнер с контентом */
+.container {
+    position: absolute; /* Позиционируем относительно экрана */
+    top: 50%; /* Центрируем по вертикали */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translate(-50%, -50%); /* Корректировка для точного центрирования */
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7); /* Прозрачный черный фон для контента */
+    padding: 30px;
+    border-radius: 15px;
+    z-index: 1; /* Контент выше видео */
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.yes {
+    background: #ff4081; /* Розовый фон для кнопки "Да" */
+    color: white;
+}
+
+.no {
+    background: #757575; /* Серый фон для кнопки "Нет" */
+    color: white;
+}
+
+/* Эффекты на кнопках при наведении */
+button:hover {
+    opacity: 0.8;
+}
+
+h1 {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+}
