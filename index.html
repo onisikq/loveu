@@ -33,6 +33,8 @@ toggleBtn.textContent = "♪";
 });
 </script>
 <button onclick="showRandomVideo()" class="action-btn">Случайное видео</button>
+<button onclick="showRandomMemory()" class="action-btn" style="bottom: 70px;">Случайное фото</button>
+
     <div class="page-wrapper">
         <div class="container">
             <header class="centered-block">
@@ -53,13 +55,31 @@ toggleBtn.textContent = "♪";
       border-radius: 10px;
       margin: 20px auto;
       max-width: 500px;
+      transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
     }
+    
+    .dark-theme .calendar {
+      background: #252538;
+      color: #e6e6e6;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
     #important-dates li {
       padding: 8px;
       border-bottom: 1px dashed #eee;
+      transition: background-color 0.3s ease;
     }
+    
+    .dark-theme #important-dates li {
+      border-bottom: 1px dashed #444;
+    }
+    
     #important-dates li:hover {
       background: #fff5f5;
+    }
+    
+    .dark-theme #important-dates li:hover {
+      background: #333355;
     }
   </style>
 
@@ -97,6 +117,7 @@ toggleBtn.textContent = "♪";
             <div id="content-sections">
                 <div id="photos-section" class="content-section active">
                     <div class="gallery centered-block" id="gallery"></div>
+                    <!-- Сюда будет добавлен временной таймлайн через JavaScript -->
                 </div>
                 
                 <div id="videos-section" class="content-section">
