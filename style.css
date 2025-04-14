@@ -749,3 +749,369 @@ video.carousel-media {
         right: 20px;
     }
 }
+
+/* Добавьте этот код в конец вашего файла style.css */
+
+/* 1. СТИЛИ ДЛЯ ИНТЕРАКТИВНОЙ ИСТОРИИ ЛЮБВИ */
+.love-story-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.section-title {
+    text-align: center;
+    color: #ff6b6b;
+    font-size: 28px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.section-title:after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #ff6b6b, transparent);
+    margin: 10px auto;
+}
+
+.interactive-story {
+    position: relative;
+}
+
+.interactive-story:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    background: linear-gradient(to bottom, #ff6b6b00, #ff6b6b, #ff6b6b00);
+    transform: translateX(-50%);
+}
+
+.story-item {
+    display: flex;
+    margin-bottom: 40px;
+    opacity: 0;
+    position: relative;
+}
+
+.story-item[data-aos="fade-right"] {
+    flex-direction: row;
+    padding-right: 50%;
+}
+
+.story-item[data-aos="fade-left"] {
+    flex-direction: row-reverse;
+    padding-left: 50%;
+}
+
+.story-date {
+    min-width: 100px;
+    padding: 8px 15px;
+    background: #ff6b6b;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    margin: 0 20px;
+    align-self: flex-start;
+    transition: all 0.3s ease;
+}
+
+.story-item:hover .story-date {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.story-content {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 300px;
+}
+
+.dark-theme .story-content {
+    background: #252538;
+    color: #e6e6e6;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.story-content h3 {
+    margin-top: 0;
+    color: #ff6b6b;
+}
+
+.story-content p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.story-item:hover .story-content {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.2);
+}
+
+.story-hearts {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.story-hearts span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.story-item:hover .story-hearts span {
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* 2. СТИЛИ ДЛЯ ПЕРСОНАЛЬНЫХ СООБЩЕНИЙ */
+.message-toggle {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease;
+    z-index: 50;
+}
+
+.message-toggle:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.message-modal-content {
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+}
+
+.messages-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.messages-list {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    background: rgba(255, 245, 245, 0.5);
+    border-radius: 10px;
+}
+
+.dark-theme .messages-list {
+    background: rgba(37, 37, 56, 0.5);
+}
+
+.message-item {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s forwards;
+}
+
+.dark-theme .message-item {
+    background: #1f1f30;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.message-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+}
+
+.message-date {
+    font-size: 14px;
+    color: #ff6b6b;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.message-text {
+    line-height: 1.5;
+}
+
+.new-message {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.new-message textarea {
+    width: 100%;
+    height: 100px;
+    padding: 15px;
+    border: 2px solid #ffcaca;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    resize: none;
+}
+
+.dark-theme .new-message textarea {
+    background: #252538;
+    color: #e6e6e6;
+    border-color: #444466;
+}
+
+.new-message textarea:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+}
+
+.new-message button {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+}
+
+.new-message button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* 3. СТИЛИ ДЛЯ УЛУЧШЕННОЙ АНИМАЦИИ И ЭФФЕКТОВ */
+.effect-button {
+    position: fixed;
+    bottom: 190px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease;
+    z-index: 50;
+}
+
+.effect-button:hover {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.confetti {
+    position: fixed;
+    z-index: 999;
+    pointer-events: none;
+    border-radius: 50%;
+    animation: confettiFall 5s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0);
+    }
+    100% {
+        transform: translateY(100vh) translateX(var(--random-x)) rotate(var(--random-rotation));
+    }
+}
+
+.mini-heart {
+    position: absolute;
+    color: #ff6b6b;
+    font-size: 16px;
+    pointer-events: none;
+    animation: floatUp 1s forwards;
+    z-index: 10;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+/* Адаптивность для новых элементов */
+@media (max-width: 768px) {
+    .story-item[data-aos="fade-right"],
+    .story-item[data-aos="fade-left"] {
+        flex-direction: column;
+        padding: 0;
+        align-items: center;
+        margin-left: 30px;
+    }
+    
+    .story-date {
+        margin-bottom: 15px;
+    }
+    
+    .story-content {
+        max-width: 100%;
+    }
+    
+    .interactive-story:before {
+        left: 30px;
+    }
+    
+    .message-toggle,
+    .effect-button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .message-toggle {
+        bottom: 80px;
+    }
+    
+    .effect-button {
+        bottom: 140px;
+    }
+}

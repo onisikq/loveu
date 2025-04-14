@@ -5,6 +5,39 @@
 <audio id="bgMusic" loop>
     <source src="photo/mot-avgust-eto-ty_(bobamuz.online).mp3" type="audio/mpeg">
   </audio>
+  <!-- Добавьте эти строки в <head> вашего index.html (сразу после существующих ссылок) -->
+<style>
+  /* Эти стили нужны для правильной работы интерактивных элементов */
+  .story-item {
+      opacity: 0;
+  }
+  
+  .story-item[data-aos="fade-right"] {
+      transform: translateX(-50px);
+  }
+  
+  .story-item[data-aos="fade-left"] {
+      transform: translateX(50px);
+  }
+  
+  /* Вспомогательные классы анимации */
+  .animate-in {
+      animation: fadeIn 0.5s forwards;
+  }
+  </style>
+  
+  <!-- В index.html добавьте еще одну вкладку в секцию навигации -->
+  <!-- Найдите блок div с классом "navigation centered-block" и добавьте эту кнопку: -->
+  <button id="story-tab" class="nav-button">История</button>
+  
+  <!-- Добавьте новую секцию контента -->
+  <!-- Найдите блок div с id "content-sections" и добавьте: -->
+  <div id="story-section" class="content-section">
+      <!-- Сюда автоматически будет добавлена интерактивная история через JavaScript -->
+      <div class="centered-block">
+          <p>Загрузка истории нашей любви...</p>
+      </div>
+  </div>
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

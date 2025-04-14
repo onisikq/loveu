@@ -49,7 +49,17 @@ const memories = [
         photo: "photo/photo10.jpg",
         date: "28.02.2025",
         text: "Не грусти Жаным-я скоро вернусь"
-    }
+    },
+    {
+        photo: "photo/photo11.jpg",
+        date: "30.03.2025",
+        text: "Букет цветов"
+    },
+    {
+        photo: "photo/photo12.jpg",
+        date: "7.04.2025",
+        text: "букет и макоронсы"
+    },
 ];
 
 // Данные для временной шкалы
@@ -74,11 +84,18 @@ const timelineEvents = [
         title: "Концерт Мота",
         description: "Незабываемое музыкальное впечатление"
     },
+   
     {
         date: "28.02.2025",
         title: "Временное расставание",
         description: "Ненадолго разлучились, но это сделало нашу связь крепче"
-    }
+    },
+    {
+        date: "30.03.2025",
+        title: "Первый букет цветов",
+        description: "Незабываемое  впечатление"
+    },
+    
 ];
 
 // Данные для видео
@@ -110,7 +127,14 @@ const videos = [
         title: "Только ТЫ И Я",
         date: "22.02.2025",
         description: "Спонтанный момент счастья"
-    }
+    },
+    {
+        thumbnail: "video/photov1.jpg",
+        source: "video/video5.MOV",
+        title: "Букет цветов",
+        date: "22.02.2025",
+        description: "Спонтанный момент счастья"
+    },
 ];
 
 let currentSlideIndex = 0;
@@ -377,6 +401,29 @@ function initNavigation() {
             if (videoElement) videoElement.pause();
         }
     });
+    // Добавьте этот код в функцию initNavigation() в вашем script.js
+
+// Обработчик для вкладки истории
+const storyTab = document.getElementById('story-tab');
+const storySection = document.getElementById('story-section');
+
+if (storyTab && storySection) {
+    storyTab.addEventListener('click', () => {
+        // Скрываем активные секции
+        document.querySelectorAll('.content-section.active').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // Снимаем активность с кнопок
+        document.querySelectorAll('.nav-button.active').forEach(button => {
+            button.classList.remove('active');
+        });
+        
+        // Активируем секцию истории и кнопку
+        storyTab.classList.add('active');
+        storySection.classList.add('active');
+    });
+}
 }
 
 // Запуск при загрузке
@@ -402,3 +449,329 @@ window.onload = function() {
         }, 2000);
     }
 };
+
+// Добавьте этот код в конец вашего файла script.js
+
+// 1. ИНТЕРАКТИВНАЯ ИСТОРИЯ ЛЮБВИ С АНИМАЦИЕЙ ПРИ ПРОКРУТКЕ
+function initScrollAnimation() {
+    // Создаем новый раздел для истории любви
+    const storySection = document.createElement('div');
+    storySection.className = 'love-story-section';
+    storySection.innerHTML = `
+        <h2 class="section-title">Наша история любви</h2>
+        <div class="interactive-story">
+            <div class="story-item" data-aos="fade-right">
+                <div class="story-date">27.12.2024</div>
+                <div class="story-content">
+                    <h3>Первая встреча</h3>
+                    <p>Тот особенный день, когда мы впервые увидели друг друга. Я помню каждую деталь...</p>
+                    <div class="story-hearts"><span>❤️</span><span>❤️</span><span>❤️</span></div>
+                </div>
+            </div>
+            
+            <div class="story-item" data-aos="fade-left">
+                <div class="story-date">30.12.2024</div>
+                <div class="story-content">
+                    <h3>Начало отношений</h3>
+                    <p>День, когда мы решили быть вместе. Помнишь, как мы гуляли до поздней ночи?</p>
+                    <div class="story-hearts"><span>❤️</span><span>❤️</span><span>❤️</span></div>
+                </div>
+            </div>
+            
+            <div class="story-item" data-aos="fade-right">
+                <div class="story-date">02.01.2025</div>
+                <div class="story-content">
+                    <h3>Твой день рождения</h3>
+                    <p>Я так волновался, понравится ли тебе сюрприз. Твоя улыбка была лучшим подарком для меня.</p>
+                    <div class="story-hearts"><span>❤️</span><span>❤️</span><span>❤️</span></div>
+                </div>
+            </div>
+            
+            <div class="story-item" data-aos="fade-left">
+                <div class="story-date">22.02.2025</div>
+                <div class="story-content">
+                    <h3>Концерт Мота</h3>
+                    <p>Музыка, которая стала частью нашей истории. Я до сих пор слышу эти песни и вспоминаю тебя.</p>
+                    <div class="story-hearts"><span>❤️</span><span>❤️</span><span>❤️</span></div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Добавляем новый раздел на страницу после раздела с фотографиями
+    const photosSection = document.getElementById('photos-section');
+    if (photosSection) {
+        photosSection.appendChild(storySection);
+    }
+    
+    // Добавляем обработчик событий для анимации при скролле
+    window.addEventListener('scroll', function() {
+        const storyItems = document.querySelectorAll('.story-item');
+        
+        storyItems.forEach(item => {
+            const itemTop = item.getBoundingClientRect().top;
+            const itemBottom = item.getBoundingClientRect().bottom;
+            const windowHeight = window.innerHeight;
+            
+            if (itemTop < windowHeight - 100 && itemBottom > 0) {
+                if (item.getAttribute('data-aos') === 'fade-right') {
+                    item.style.animation = 'fadeInRight 1s forwards';
+                } else {
+                    item.style.animation = 'fadeInLeft 1s forwards';
+                }
+                item.style.opacity = '1';
+            }
+        });
+    });
+}
+
+// 2. ПЕРСОНАЛЬНЫЕ СООБЩЕНИЯ
+function addPersonalMessagesFeature() {
+    // Создаем кнопку для открытия меню сообщений
+    const messageButton = document.createElement('button');
+    messageButton.id = 'message-toggle';
+    messageButton.className = 'message-toggle';
+    messageButton.innerHTML = '💌';
+    messageButton.title = 'Оставить сообщение';
+    document.body.appendChild(messageButton);
+
+    // Создаем модальное окно для сообщений
+    const messageModal = document.createElement('div');
+    messageModal.className = 'modal';
+    messageModal.id = 'message-modal';
+    messageModal.innerHTML = `
+        <div class="modal-content centered-block message-modal-content">
+            <span class="close message-close">&times;</span>
+            <h2>Наши секретные сообщения ❤️</h2>
+            
+            <div class="messages-container">
+                <div class="messages-list" id="messages-list">
+                    <!-- Здесь будут отображаться сообщения -->
+                    <div class="message-item">
+                        <div class="message-date">15.04.2025</div>
+                        <div class="message-text">Я так счастлив быть с тобой! Каждый день с тобой - подарок. ❤️</div>
+                    </div>
+                </div>
+                
+                <div class="new-message">
+                    <textarea id="new-message-text" placeholder="Напиши что-нибудь особенное для своей половинки..."></textarea>
+                    <button id="send-message">Отправить с любовью ❤️</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(messageModal);
+
+    // Добавляем обработчики событий
+    messageButton.addEventListener('click', () => {
+        document.getElementById('message-modal').style.display = 'flex';
+        loadMessages();
+    });
+
+    document.querySelector('.message-close').addEventListener('click', () => {
+        document.getElementById('message-modal').style.display = 'none';
+    });
+
+    document.getElementById('send-message').addEventListener('click', () => {
+        const messageText = document.getElementById('new-message-text').value.trim();
+        if (messageText) {
+            saveMessage(messageText);
+            document.getElementById('new-message-text').value = '';
+        }
+    });
+
+    // Функция для сохранения сообщений в localStorage
+    function saveMessage(text) {
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const year = now.getFullYear();
+        const dateStr = `${day}.${month}.${year}`;
+        
+        const newMessage = {
+            date: dateStr,
+            text: text
+        };
+        
+        let messages = JSON.parse(localStorage.getItem('loveMessages') || '[]');
+        messages.push(newMessage);
+        localStorage.setItem('loveMessages', JSON.stringify(messages));
+        
+        loadMessages(); // Обновляем список сообщений
+        createHearts(5); // Создаем несколько сердечек при отправке сообщения
+    }
+
+    // Функция для загрузки сообщений из localStorage
+    function loadMessages() {
+        const messagesList = document.getElementById('messages-list');
+        const messages = JSON.parse(localStorage.getItem('loveMessages') || '[]');
+        
+        if (messages.length === 0) {
+            // Если сообщений нет, показываем приветственное сообщение
+            messagesList.innerHTML = `
+                <div class="message-item">
+                    <div class="message-date">15.04.2025</div>
+                    <div class="message-text">Оставьте здесь свое первое сообщение для любимого человека! ❤️</div>
+                </div>
+            `;
+            return;
+        }
+        
+        // Показываем сообщения в обратном порядке (новые сверху)
+        messagesList.innerHTML = messages.slice().reverse().map(msg => `
+            <div class="message-item">
+                <div class="message-date">${msg.date}</div>
+                <div class="message-text">${msg.text}</div>
+            </div>
+        `).join('');
+    }
+}
+
+// 3. УЛУЧШЕННАЯ АНИМАЦИЯ И ЭФФЕКТЫ
+function enhanceAnimations() {
+    // Добавляем кнопку для запуска конфетти
+    const confettiButton = document.createElement('button');
+    confettiButton.id = 'confetti-button';
+    confettiButton.className = 'effect-button';
+    confettiButton.innerHTML = '🎉';
+    confettiButton.title = 'Праздничное настроение';
+    document.body.appendChild(confettiButton);
+    
+    // Добавляем обработчик событий для кнопки конфетти
+    confettiButton.addEventListener('click', () => {
+        createConfetti(100); // Создаем 100 конфетти
+        createHearts(15); // И немного сердечек
+    });
+    
+    // Улучшаем анимацию карточек с фотографиями
+    enhancePhotoCards();
+    
+    // Добавляем эффекты при наведении на кнопки
+    enhanceButtons();
+}
+
+// Функция для создания конфетти
+function createConfetti(count) {
+    for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            
+            // Случайный цвет
+            const colors = ['#ff6b6b', '#ffcc5c', '#88d8b0', '#8ac4ff', '#ffabe1'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.backgroundColor = color;
+            
+            // Случайный размер
+            const size = Math.random() * 10 + 5;
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            
+            // Случайная начальная позиция
+            const startX = Math.random() * window.innerWidth;
+            confetti.style.left = `${startX}px`;
+            confetti.style.top = '-10px';
+            
+            // Случайное движение и вращение
+            const randomX = (Math.random() - 0.5) * 300;
+            const randomRotation = Math.random() * 360;
+            confetti.style.setProperty('--random-x', `${randomX}px`);
+            confetti.style.setProperty('--random-rotation', `${randomRotation}deg`);
+            
+            document.body.appendChild(confetti);
+            
+            // Удаление конфетти после завершения анимации
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }, i * 20);
+    }
+}
+
+// Функция для улучшения анимации карточек с фотографиями
+function enhancePhotoCards() {
+    const memoryCards = document.querySelectorAll('.memory-card');
+    
+    memoryCards.forEach(card => {
+        // Добавляем анимацию при наведении
+        card.addEventListener('mouseenter', function() {
+            const img = this.querySelector('img');
+            img.style.transform = 'scale(1.1)';
+            img.style.filter = 'brightness(1.1) contrast(1.1)';
+            
+            // Создаем мини-сердечки вокруг карточки
+            for (let i = 0; i < 3; i++) {
+                const miniHeart = document.createElement('div');
+                miniHeart.className = 'mini-heart';
+                miniHeart.innerHTML = '❤';
+                miniHeart.style.left = `${Math.random() * 100}%`;
+                miniHeart.style.top = `${Math.random() * 100}%`;
+                this.appendChild(miniHeart);
+                
+                setTimeout(() => {
+                    miniHeart.remove();
+                }, 1000);
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            const img = this.querySelector('img');
+            img.style.transform = 'scale(1)';
+            img.style.filter = '';
+        });
+    });
+}
+
+// Функция для улучшения анимации кнопок
+function enhanceButtons() {
+    const buttons = document.querySelectorAll('button');
+    
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 6px 20px rgba(255, 107, 107, 0.4)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+        });
+    });
+}
+
+// Запуск новых функций при загрузке страницы
+window.addEventListener('load', function() {
+    // Добавляем эти строки в конец существующей функции window.onload
+    setTimeout(() => {
+        initScrollAnimation();
+        addPersonalMessagesFeature();
+        enhanceAnimations();
+    }, 2000); // Небольшая задержка для подгрузки всех элементов
+});
+
+// Добавляем анимацию для раздела "Интерактивная история любви"
+document.head.insertAdjacentHTML('beforeend', `
+<style>
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+</style>
+`);
