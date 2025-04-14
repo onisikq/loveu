@@ -1,0 +1,456 @@
+/* Базовые стили */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff5f5;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    animation: pageLoad 0.8s ease-out forwards;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.centered-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Анимация при загрузке страницы */
+@keyframes pageLoad {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+header, .navigation, .gallery, .video-gallery {
+    opacity: 0;
+    animation: pageLoad 1s ease-out forwards;
+}
+
+header {
+    animation-delay: 0.2s;
+}
+
+.navigation {
+    animation-delay: 0.4s;
+}
+
+.gallery, .video-gallery {
+    animation-delay: 0.6s;
+}
+
+.memory-card, .video-card {
+    opacity: 0;
+    animation: pageLoad 0.5s ease-out forwards;
+}
+
+/* Последовательная анимация элементов */
+@keyframes staggered {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Стили для навигации */
+.navigation {
+    margin: 30px 0 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    width: fit-content;
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.navigation:hover {
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.2);
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    padding: 12px 24px;
+    margin: 0 5px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.1), transparent);
+    transition: all 0.6s ease;
+}
+
+.nav-button:hover:before {
+    left: 100%;
+}
+
+.nav-button.active {
+    background: #ff6b6b;
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Стили для секций содержимого */
+.content-section {
+    display: none;
+    width: 100%;
+}
+
+.content-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Галерея */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 30px;
+}
+
+.memory-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s;
+    aspect-ratio: 1/1;
+}
+
+.memory-card:hover {
+    transform: scale(1.03);
+}
+
+.memory-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.memory-date {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* Стили для видео-галереи */
+.video-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.video-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
+}
+
+.video-thumbnail {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.video-card:hover .video-thumbnail img {
+    transform: scale(1.05);
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 107, 107, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.video-card:hover .play-button {
+    opacity: 1;
+    background: rgba(255, 107, 107, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-info {
+    padding: 15px;
+}
+
+.video-info h3 {
+    margin: 0 0 5px;
+    color: #333;
+}
+
+.video-date {
+    color: #ff6b6b;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    padding: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 30px;
+    color: #ff6b6b;
+    cursor: pointer;
+}
+
+/* Карусель */
+.carousel-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.carousel-track-container {
+    flex: 1;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: 400px;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.carousel-button {
+    background: rgba(255, 107, 107, 0.3);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 50%;
+    color: white;
+    z-index: 2;
+    margin: 0 10px;
+}
+
+.carousel-button:hover {
+    background: rgba(255, 107, 107, 0.8);
+}
+
+.memory-info {
+    text-align: center;
+    padding: 0 20px;
+}
+
+#modal-date {
+    font-weight: bold;
+    color: #ff6b6b;
+    margin-bottom: 10px;
+}
+
+/* Стили для видео-модального окна */
+.video-player {
+    width: 100%;
+}
+
+.video-details {
+    padding: 20px 0;
+    text-align: left;
+}
+
+.video-details h2 {
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.video-details .date {
+    color: #ff6b6b;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Улучшение кнопки случайного видео */
+.action-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+/* Общие стили для медиа */
+.memory-media, .carousel-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Специфичные для видео */
+video.memory-media {
+    background: #000;
+}
+
+video.carousel-media {
+    max-height: 400px;
+    background: #000;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .carousel {
+        max-width: 100%;
+    }
+    
+    .carousel-track {
+        height: 300px;
+    }
+    
+    .video-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+    
+    .navigation {
+        width: 90%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-button {
+        padding: 10px 20px;
+        margin: 5px;
+    }
+    
+    .action-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+    
+    video.carousel-media {
+        max-height: 300px;
+    }
+}

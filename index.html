@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- В <head> добавьте: -->
+<audio id="bgMusic" loop>
+    <source src="photo/mot-avgust-eto-ty_(bobamuz.online).mp3" type="audio/mpeg">
+  </audio>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши 10 лучших моментов</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- В <body> добавьте кнопку: -->
+<button id="musicToggle" style="position: fixed; bottom: 20px; right: 20px; 
+background: #ff6b6b; color: white; border: none; width: 40px; 
+height: 40px; border-radius: 50%; cursor: pointer;">♪</button>
+
+<script>
+   
+const music = document.getElementById("bgMusic");
+const toggleBtn = document.getElementById("musicToggle");
+
+toggleBtn.addEventListener("click", () => {
+if (music.paused) {
+music.play();
+toggleBtn.textContent = "♫";
+} else {
+music.pause();
+toggleBtn.textContent = "♪";
+}
+});
+</script>
+<button onclick="showRandomVideo()" class="action-btn">Случайное видео</button>
+    <div class="page-wrapper">
+        <div class="container">
+            <header class="centered-block">
+                <!-- В раздел <header> добавьте: -->
+<div id="love-timer" style="margin: 15px 0; font-size: 1.2em;"></div>
+<div class="calendar">
+    <h3>Наши важные даты</h3>
+    <ul id="important-dates" style="list-style: none; padding: 0;">
+      <li>30.12.2024 - Начали встречаться ❤️</li>
+      <!-- Добавьте другие даты -->
+    </ul>
+  </div>
+  
+  <style>
+    .calendar {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 500px;
+    }
+    #important-dates li {
+      padding: 8px;
+      border-bottom: 1px dashed #eee;
+    }
+    #important-dates li:hover {
+      background: #fff5f5;
+    }
+  </style>
+
+<script>
+  // Расчет дней вместе
+  const startDate = new Date("2024-12-30"); // Ваша дата
+  
+  function updateLoveTimer() {
+    const diff = Math.floor((new Date() - startDate) / (1000*60*60*24));
+    const years = Math.floor(diff / 365);
+    const days = diff % 365;
+    
+    document.getElementById("love-timer").innerHTML = `
+      Вместе уже: <br>
+      <span style="color: #ff6b6b; font-weight: bold;">
+        ${years} ${years === 1 ? 'год' : years < 5 ? 'года' : 'лет'} 
+        и ${days} ${days === 1 ? 'день' : days < 5 ? 'дня' : 'дней'}
+      </span>
+    `;
+  }
+  
+  setInterval(updateLoveTimer, 86400000); // Обновлять ежедневно
+  updateLoveTimer(); // Запустить сразу
+</script>
+                <h1>10 счастливых мгновений ❤️</h1>
+                <p>Кликайте на фото, чтобы увидеть историю</p>
+            </header>
+
+            <!-- Добавляем навигацию -->
+            <div class="navigation centered-block">
+                <button id="photos-tab" class="nav-button active">Фотографии</button>
+                <button id="videos-tab" class="nav-button">Видео</button>
+            </div>
+
+            <div id="content-sections">
+                <div id="photos-section" class="content-section active">
+                    <div class="gallery centered-block" id="gallery"></div>
+                </div>
+                
+                <div id="videos-section" class="content-section">
+                    <div class="video-gallery centered-block" id="video-section"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно для фото -->
+        <div class="modal" id="modal">
+            <div class="modal-content centered-block">
+                <span class="close">&times;</span>
+                
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <button class="carousel-button prev">❮</button>
+                        
+                        <div class="carousel-track-container">
+                            <div class="carousel-track" id="carousel-track"></div>
+                        </div>
+                        
+                        <button class="carousel-button next">❯</button>
+                    </div>
+
+                    <div class="memory-info">
+                        <p id="modal-date"></p>
+                        <p id="modal-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно для видео -->
+        <div class="modal" id="video-modal">
+            <div class="modal-content centered-block">
+                <span class="close video-close">&times;</span>
+                <div id="video-player" class="video-player"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
